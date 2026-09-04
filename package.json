@@ -1,0 +1,34 @@
+{
+  "name": "@warpgogol/warpgogol-billing-cloudflare",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "license": "Apache-2.0",
+  "description": "Cloudflare D1 storage adapter for the billing read projection.",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": { "types": "./src/index.ts", "default": "./src/index.ts" }
+  },
+  "files": ["dist/", "src/", "README.md", "LICENSE"],
+  "scripts": {
+    "build": "pnpm exec tsc -p tsconfig.json",
+    "build:check": "pnpm exec tsc -p tsconfig.json --noEmit",
+    "check": "pnpm run build:check && pnpm run test",
+    "lint": "pnpm exec eslint \"src/**/*.ts\"",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "engines": { "node": ">=24" },
+  "dependencies": {
+    "@warpgogol/warpgogol-billing-core": "workspace:*"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20251001.0",
+    "@types/node": "^26.2.0",
+    "fast-check": "^4.9.0",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.11"
+  },
+  "publishConfig": { "access": "public" }
+}

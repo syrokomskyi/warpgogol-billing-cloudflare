@@ -1,0 +1,38 @@
+# extract.config.yaml — standalone package export for @warpgogol/warpgogol-billing-cloudflare
+
+projectDir: packages/warpgogol-billing-cloudflare
+destName: warpgogol-billing-cloudflare
+standalone: true
+versionBump: patch
+
+workspacePrefixes:
+  - "@warpgogol/"
+stripScopes:
+  - "@warpgogol/"
+preservePackages:
+  - "@warpgogol/warpgogol-billing-cloudflare"
+  - "@warpgogol/warpgogol-billing-core"
+packageManager: pnpm
+
+ci:
+  provider: github-actions
+  publish: true
+  nodeVersion: 24
+  provenance: true
+
+ignoreDirs:
+  - .turbo
+  - node_modules
+
+excludePathSegments:
+  - .npmrc
+  - pnpm-lock.yaml
+  - tests
+
+postProcess:
+  - action: delete
+    path: pnpm-lock.yaml
+
+git:
+  remote: git@github.com:syrokomskyi/warpgogol-billing-cloudflare.git
+  autoPush: true
