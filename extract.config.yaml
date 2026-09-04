@@ -1,3 +1,4 @@
+forgePlugin: false
 # extract.config.yaml — standalone package export for @warpgogol/warpgogol-billing-cloudflare
 
 projectDir: packages/warpgogol-billing-cloudflare
