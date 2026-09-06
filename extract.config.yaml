@@ -4,7 +4,6 @@ forgePlugin: false
 projectDir: packages/warpgogol-billing-cloudflare
 destName: warpgogol-billing-cloudflare
 standalone: true
-versionBump: patch
 
 workspacePrefixes:
   - "@warpgogol/"
