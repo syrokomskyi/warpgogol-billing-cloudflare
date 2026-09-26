@@ -6,8 +6,8 @@ Cloudflare D1 storage adapter for the billing read projection.
 
 ## Entry points
 
-| Entry point | Module |
-| --- | --- |
+| Entry point                               | Module           |
+| ----------------------------------------- | ---------------- |
 | `@warpgogol/warpgogol-billing-cloudflare` | `./src/index.ts` |
 
 ## Architecture
@@ -22,8 +22,8 @@ The consuming service creates tables: `invoices`, `payments`, `billing_revision_
 
 ## Scripts
 
-| Script | Command |
-| --- | --- |
+| Script        | Command                                   |
+| ------------- | ----------------------------------------- |
 | `build:check` | `pnpm exec tsc -p tsconfig.json --noEmit` |
-| `test` | `vitest run` |
-| `lint` | `pnpm exec eslint "src/**/*.ts"` |
+| `test`        | `vitest run`                              |
+| `lint`        | `pnpm exec eslint "src/**/*.ts"`          |

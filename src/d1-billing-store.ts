@@ -12,7 +12,11 @@ Sweep batch 3: rewrote ~95 purposes across werkstatt-knowledge, werkstatt-shared
 */
 
 import type { BillingStore } from "@warpgogol/warpgogol-billing-core/ports";
-import type { BillingReadModel, InvoiceV1, PaymentRecordV1 } from "@warpgogol/warpgogol-billing-core/schemas";
+import type {
+  BillingReadModel,
+  InvoiceV1,
+  PaymentRecordV1,
+} from "@warpgogol/warpgogol-billing-core/schemas";
 import { nextRevision } from "@warpgogol/warpgogol-billing-core";
 
 interface D1Result {
@@ -44,7 +48,9 @@ export class D1BillingStore implements BillingStore {
 
   async getRevision(projectId: string): Promise<number> {
     const result = await this.db
-      .prepare("SELECT MAX(revision) AS max_revision FROM billing_revision_sequence WHERE project_id = ?")
+      .prepare(
+        "SELECT MAX(revision) AS max_revision FROM billing_revision_sequence WHERE project_id = ?",
+      )
       .bind(projectId)
       .first<{ max_revision: number | null }>();
     return result?.max_revision ?? 0;
@@ -53,7 +59,9 @@ export class D1BillingStore implements BillingStore {
   async getBillingReadModel(projectId: string): Promise<BillingReadModel | null> {
     const revision = await this.getRevision(projectId);
     const invoicesResult = await this.db
-      .prepare("SELECT invoice_id, kind, number, amount, currency, status, issued_at, due_at, paid_at, pdf_ref FROM invoices WHERE project_id = ?")
+      .prepare(
+        "SELECT invoice_id, kind, number, amount, currency, status, issued_at, due_at, paid_at, pdf_ref FROM invoices WHERE project_id = ?",
+      )
       .bind(projectId)
       .all<{
         invoice_id: string;
@@ -91,7 +99,9 @@ export class D1BillingStore implements BillingStore {
 
   async getInvoice(projectId: string, invoiceId: string): Promise<InvoiceV1 | null> {
     const row = await this.db
-      .prepare("SELECT invoice_id, kind, number, amount, currency, status, issued_at, due_at, paid_at, pdf_ref FROM invoices WHERE project_id = ? AND invoice_id = ?")
+      .prepare(
+        "SELECT invoice_id, kind, number, amount, currency, status, issued_at, due_at, paid_at, pdf_ref FROM invoices WHERE project_id = ? AND invoice_id = ?",
+      )
       .bind(projectId, invoiceId)
       .first<{
         invoice_id: string;
@@ -160,7 +170,9 @@ export class D1BillingStore implements BillingStore {
     const currentRevision = await this.getRevision(projectId);
     const newRevision = nextRevision(currentRevision);
     await this.db
-      .prepare("INSERT INTO billing_revision_sequence (project_id, revision, created_at) VALUES (?, ?, ?)")
+      .prepare(
+        "INSERT INTO billing_revision_sequence (project_id, revision, created_at) VALUES (?, ?, ?)",
+      )
       .bind(projectId, newRevision, new Date().toISOString())
       .run();
 
@@ -221,7 +233,9 @@ export class D1BillingStore implements BillingStore {
     const currentRevision = await this.getRevision(projectId);
     const newRevision = nextRevision(currentRevision);
     await this.db
-      .prepare("INSERT INTO billing_revision_sequence (project_id, revision, created_at) VALUES (?, ?, ?)")
+      .prepare(
+        "INSERT INTO billing_revision_sequence (project_id, revision, created_at) VALUES (?, ?, ?)",
+      )
       .bind(projectId, newRevision, new Date().toISOString())
       .run();
 
