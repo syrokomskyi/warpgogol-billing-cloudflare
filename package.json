@@ -4,6 +4,10 @@
   "private": false,
   "type": "module",
   "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/syrokomskyi/warpgogol-billing-cloudflare.git"
+  },
   "description": "Cloudflare D1 storage adapter for the billing read projection.",
   "main": "./src/index.ts",
   "types": "./src/index.ts",
