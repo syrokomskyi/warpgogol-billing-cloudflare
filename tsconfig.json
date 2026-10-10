@@ -2,10 +2,19 @@
   "extends": "../../tsconfig/node-lib.json",
   "compilerOptions": {
     "rootDir": "src",
+    "strict": true,
+    "skipLibCheck": true,
     "outDir": "dist",
     "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
-    "types": ["node", "@cloudflare/workers-types"]
+    "types": [
+      "node",
+      "@cloudflare/workers-types"
+    ]
   },
-  "include": ["src/**/*.ts"],
-  "exclude": ["src/tests"]
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "src/tests"
+  ]
 }
