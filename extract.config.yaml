@@ -27,7 +27,6 @@ ignoreDirs:
 excludePathSegments:
   - .npmrc
   - pnpm-lock.yaml
-  - tests
 
 postProcess:
   - action: delete
